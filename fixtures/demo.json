@@ -1,0 +1,334 @@
+{
+  "_comment": "Representative ARM list-API responses (the 'value' arrays) for one subscription. Public IPs use TEST-NET-2 (198.51.100.0/24). One VM per demo scenario.",
+  "virtualMachines": [
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-exposed-ssh",
+      "name": "vm-exposed-ssh",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "westeurope",
+      "properties": {
+        "networkProfile": {
+          "networkInterfaces": [
+            {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-exposed-ssh", "properties": {"primary": true}}
+          ]
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-subnet-blocks",
+      "name": "vm-subnet-blocks",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "westeurope",
+      "properties": {
+        "networkProfile": {
+          "networkInterfaces": [
+            {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-subnet-blocks", "properties": {"primary": true}}
+          ]
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-priority-deny",
+      "name": "vm-priority-deny",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "westeurope",
+      "properties": {
+        "networkProfile": {
+          "networkInterfaces": [
+            {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-priority-deny", "properties": {"primary": true}}
+          ]
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-no-public-ip",
+      "name": "vm-no-public-ip",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "westeurope",
+      "properties": {
+        "networkProfile": {
+          "networkInterfaces": [
+            {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-no-public-ip", "properties": {"primary": true}}
+          ]
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-no-nsg",
+      "name": "vm-no-nsg",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "westeurope",
+      "properties": {
+        "networkProfile": {
+          "networkInterfaces": [
+            {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-no-nsg", "properties": {"primary": true}}
+          ]
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-missing-nsg",
+      "name": "vm-missing-nsg",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "westeurope",
+      "properties": {
+        "networkProfile": {
+          "networkInterfaces": [
+            {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-missing-nsg", "properties": {"primary": true}}
+          ]
+        }
+      }
+    }
+  ],
+  "networkInterfaces": [
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-exposed-ssh",
+      "name": "nic-exposed-ssh",
+      "type": "Microsoft.Network/networkInterfaces",
+      "properties": {
+        "networkSecurityGroup": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-ssh-open"},
+        "ipConfigurations": [
+          {
+            "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-exposed-ssh/ipConfigurations/ipconfig1",
+            "name": "ipconfig1",
+            "properties": {
+              "primary": true,
+              "privateIPAddress": "10.0.1.4",
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo/subnets/snet-open"},
+              "publicIPAddress": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-exposed-ssh"}
+            }
+          }
+        ],
+        "virtualMachine": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-exposed-ssh"}
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-subnet-blocks",
+      "name": "nic-subnet-blocks",
+      "type": "Microsoft.Network/networkInterfaces",
+      "properties": {
+        "networkSecurityGroup": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-ssh-open"},
+        "ipConfigurations": [
+          {
+            "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-subnet-blocks/ipConfigurations/ipconfig1",
+            "name": "ipconfig1",
+            "properties": {
+              "primary": true,
+              "privateIPAddress": "10.0.2.4",
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo/subnets/snet-locked"},
+              "publicIPAddress": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-subnet-blocks"}
+            }
+          }
+        ],
+        "virtualMachine": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-subnet-blocks"}
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-priority-deny",
+      "name": "nic-priority-deny",
+      "type": "Microsoft.Network/networkInterfaces",
+      "properties": {
+        "networkSecurityGroup": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-priority-deny"},
+        "ipConfigurations": [
+          {
+            "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-priority-deny/ipConfigurations/ipconfig1",
+            "name": "ipconfig1",
+            "properties": {
+              "primary": true,
+              "privateIPAddress": "10.0.1.5",
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo/subnets/snet-open"},
+              "publicIPAddress": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-priority-deny"}
+            }
+          }
+        ],
+        "virtualMachine": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-priority-deny"}
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-no-public-ip",
+      "name": "nic-no-public-ip",
+      "type": "Microsoft.Network/networkInterfaces",
+      "properties": {
+        "networkSecurityGroup": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-ssh-open"},
+        "ipConfigurations": [
+          {
+            "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-no-public-ip/ipConfigurations/ipconfig1",
+            "name": "ipconfig1",
+            "properties": {
+              "primary": true,
+              "privateIPAddress": "10.0.1.6",
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo/subnets/snet-open"}
+            }
+          }
+        ],
+        "virtualMachine": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-no-public-ip"}
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-no-nsg",
+      "name": "nic-no-nsg",
+      "type": "Microsoft.Network/networkInterfaces",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-no-nsg/ipConfigurations/ipconfig1",
+            "name": "ipconfig1",
+            "properties": {
+              "primary": true,
+              "privateIPAddress": "10.0.1.7",
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo/subnets/snet-open"},
+              "publicIPAddress": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-no-nsg"}
+            }
+          }
+        ],
+        "virtualMachine": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-no-nsg"}
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-missing-nsg",
+      "name": "nic-missing-nsg",
+      "type": "Microsoft.Network/networkInterfaces",
+      "properties": {
+        "networkSecurityGroup": {"id": "/subscriptions/22222222-2222-2222-2222-222222222222/resourceGroups/rg-shared/providers/Microsoft.Network/networkSecurityGroups/nsg-shared-baseline"},
+        "ipConfigurations": [
+          {
+            "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkInterfaces/nic-missing-nsg/ipConfigurations/ipconfig1",
+            "name": "ipconfig1",
+            "properties": {
+              "primary": true,
+              "privateIPAddress": "10.0.1.8",
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo/subnets/snet-open"},
+              "publicIPAddress": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-missing-nsg"}
+            }
+          }
+        ],
+        "virtualMachine": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Compute/virtualMachines/vm-missing-nsg"}
+      }
+    }
+  ],
+  "publicIPAddresses": [
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-exposed-ssh",
+      "name": "pip-exposed-ssh",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "sku": {"name": "Standard", "tier": "Regional"},
+      "properties": {"ipAddress": "198.51.100.10", "publicIPAllocationMethod": "Static"}
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-subnet-blocks",
+      "name": "pip-subnet-blocks",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "sku": {"name": "Standard", "tier": "Regional"},
+      "properties": {"ipAddress": "198.51.100.11", "publicIPAllocationMethod": "Static"}
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-priority-deny",
+      "name": "pip-priority-deny",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "sku": {"name": "Standard", "tier": "Regional"},
+      "properties": {"ipAddress": "198.51.100.12", "publicIPAllocationMethod": "Static"}
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-no-nsg",
+      "name": "pip-no-nsg",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "sku": {"name": "Standard", "tier": "Regional"},
+      "properties": {"ipAddress": "198.51.100.13", "publicIPAllocationMethod": "Static"}
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/publicIPAddresses/pip-missing-nsg",
+      "name": "pip-missing-nsg",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "sku": {"name": "Standard", "tier": "Regional"},
+      "properties": {"ipAddress": "198.51.100.14", "publicIPAllocationMethod": "Static"}
+    }
+  ],
+  "virtualNetworks": [
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo",
+      "name": "vnet-demo",
+      "type": "Microsoft.Network/virtualNetworks",
+      "properties": {
+        "addressSpace": {"addressPrefixes": ["10.0.0.0/16"]},
+        "subnets": [
+          {
+            "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo/subnets/snet-open",
+            "name": "snet-open",
+            "properties": {"addressPrefix": "10.0.1.0/24"}
+          },
+          {
+            "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-demo/subnets/snet-locked",
+            "name": "snet-locked",
+            "properties": {
+              "addressPrefix": "10.0.2.0/24",
+              "networkSecurityGroup": {"id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-subnet-locked"}
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "networkSecurityGroups": [
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-ssh-open",
+      "name": "nsg-ssh-open",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "properties": {
+        "securityRules": [
+          {"name": "allow-ssh-internet", "properties": {"priority": 100, "direction": "Inbound", "access": "Allow", "protocol": "Tcp", "sourceAddressPrefix": "Internet", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "22"}}
+        ],
+        "defaultSecurityRules": [
+          {"name": "AllowVnetInBound", "properties": {"priority": 65000, "direction": "Inbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "VirtualNetwork", "sourcePortRange": "*", "destinationAddressPrefix": "VirtualNetwork", "destinationPortRange": "*"}},
+          {"name": "AllowAzureLoadBalancerInBound", "properties": {"priority": 65001, "direction": "Inbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "AzureLoadBalancer", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}},
+          {"name": "DenyAllInBound", "properties": {"priority": 65500, "direction": "Inbound", "access": "Deny", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}},
+          {"name": "AllowVnetOutBound", "properties": {"priority": 65000, "direction": "Outbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "VirtualNetwork", "sourcePortRange": "*", "destinationAddressPrefix": "VirtualNetwork", "destinationPortRange": "*"}},
+          {"name": "AllowInternetOutBound", "properties": {"priority": 65001, "direction": "Outbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "Internet", "destinationPortRange": "*"}},
+          {"name": "DenyAllOutBound", "properties": {"priority": 65500, "direction": "Outbound", "access": "Deny", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}}
+        ]
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-subnet-locked",
+      "name": "nsg-subnet-locked",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "properties": {
+        "securityRules": [
+          {"name": "allow-https-internet", "properties": {"priority": 100, "direction": "Inbound", "access": "Allow", "protocol": "Tcp", "sourceAddressPrefix": "Internet", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "443"}}
+        ],
+        "defaultSecurityRules": [
+          {"name": "AllowVnetInBound", "properties": {"priority": 65000, "direction": "Inbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "VirtualNetwork", "sourcePortRange": "*", "destinationAddressPrefix": "VirtualNetwork", "destinationPortRange": "*"}},
+          {"name": "AllowAzureLoadBalancerInBound", "properties": {"priority": 65001, "direction": "Inbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "AzureLoadBalancer", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}},
+          {"name": "DenyAllInBound", "properties": {"priority": 65500, "direction": "Inbound", "access": "Deny", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}},
+          {"name": "AllowVnetOutBound", "properties": {"priority": 65000, "direction": "Outbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "VirtualNetwork", "sourcePortRange": "*", "destinationAddressPrefix": "VirtualNetwork", "destinationPortRange": "*"}},
+          {"name": "AllowInternetOutBound", "properties": {"priority": 65001, "direction": "Outbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "Internet", "destinationPortRange": "*"}},
+          {"name": "DenyAllOutBound", "properties": {"priority": 65500, "direction": "Outbound", "access": "Deny", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}}
+        ]
+      }
+    },
+    {
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-priority-deny",
+      "name": "nsg-priority-deny",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "properties": {
+        "securityRules": [
+          {"name": "deny-ssh-internet", "properties": {"priority": 100, "direction": "Inbound", "access": "Deny", "protocol": "Tcp", "sourceAddressPrefix": "Internet", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "22"}},
+          {"name": "allow-ssh-any", "properties": {"priority": 300, "direction": "Inbound", "access": "Allow", "protocol": "Tcp", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "22"}}
+        ],
+        "defaultSecurityRules": [
+          {"name": "AllowVnetInBound", "properties": {"priority": 65000, "direction": "Inbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "VirtualNetwork", "sourcePortRange": "*", "destinationAddressPrefix": "VirtualNetwork", "destinationPortRange": "*"}},
+          {"name": "AllowAzureLoadBalancerInBound", "properties": {"priority": 65001, "direction": "Inbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "AzureLoadBalancer", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}},
+          {"name": "DenyAllInBound", "properties": {"priority": 65500, "direction": "Inbound", "access": "Deny", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}},
+          {"name": "AllowVnetOutBound", "properties": {"priority": 65000, "direction": "Outbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "VirtualNetwork", "sourcePortRange": "*", "destinationAddressPrefix": "VirtualNetwork", "destinationPortRange": "*"}},
+          {"name": "AllowInternetOutBound", "properties": {"priority": 65001, "direction": "Outbound", "access": "Allow", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "Internet", "destinationPortRange": "*"}},
+          {"name": "DenyAllOutBound", "properties": {"priority": 65500, "direction": "Outbound", "access": "Deny", "protocol": "*", "sourceAddressPrefix": "*", "sourcePortRange": "*", "destinationAddressPrefix": "*", "destinationPortRange": "*"}}
+        ]
+      }
+    }
+  ]
+}
