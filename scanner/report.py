@@ -22,6 +22,10 @@ def _ports(ports: list[int], checked: list[int]) -> str:
     return ", ".join(f"{p}/tcp ({SENSITIVE_PORTS[p]})" if p in SENSITIVE_PORTS else f"{p}/tcp" for p in ports)
 
 
+def _plural(n: int, word: str) -> str:
+    return f"{n} {word}{'' if n == 1 else 's'}"
+
+
 def to_text(findings: list[Finding], source: str, ports: list[int]) -> str:
     lines = [f"Internet-exposure scan of {source}",
              f"Question: can the internet at large open TCP to {', '.join(map(str, ports))} on each VM?", ""]
@@ -42,7 +46,7 @@ def to_text(findings: list[Finding], source: str, ports: list[int]) -> str:
         lines.append("")
     vms = len({f.resource_id for f in findings})
     counts = ", ".join(f"{sum(f.status == s for f in findings)} {s}" for s in STATUS_ORDER)
-    lines.append(f"Summary: {vms} VMs, {len(findings)} results: {counts}")
+    lines.append(f"Summary: {_plural(vms, 'VM')}, {_plural(len(findings), 'result')}: {counts}")
     return "\n".join(lines)
 
 

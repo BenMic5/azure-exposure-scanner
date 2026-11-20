@@ -21,6 +21,13 @@ class Cli(unittest.TestCase):
         first_result = next(line for line in r.stdout.splitlines() if line.startswith("["))
         self.assertEqual(first_result, "[EXPOSED] vm-exposed-ssh: 22/tcp (SSH)")
 
+    def test_real_azure_export_matches_ip_flow_verify(self):
+        # Exported from a live subscription; Network Watcher IP flow verify answered Allow via default-allow-ssh.
+        r = run("fixtures/live-azure.json")
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("[EXPOSED] vm-exposed-ssh: 22/tcp (SSH)", r.stdout)
+        self.assertIn("rule 'default-allow-ssh' (priority 1000)", r.stdout)
+
     def test_exits_0_when_nothing_is_exposed(self):
         self.assertEqual(run("--ports", "3389").returncode, 0)
 

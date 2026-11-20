@@ -1,0 +1,354 @@
+{
+  "virtualMachines": [
+    {
+      "etag": "\"1\"",
+      "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Compute/virtualMachines/vm-exposed-ssh",
+      "location": "swedencentral",
+      "name": "vm-exposed-ssh",
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "Standard_B2ats_v2"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkInterfaces/vm-exposed-sshVMNic"
+            }
+          ]
+        },
+        "provisioningState": "Succeeded",
+        "storageProfile": {
+          "dataDisks": [],
+          "diskControllerType": "SCSI",
+          "imageReference": {
+            "exactVersion": "22.04.202611110",
+            "offer": "0001-com-ubuntu-server-jammy",
+            "publisher": "Canonical",
+            "sku": "22_04-lts-gen2",
+            "version": "latest"
+          },
+          "osDisk": {
+            "caching": "ReadWrite",
+            "createOption": "FromImage",
+            "deleteOption": "Detach",
+            "diskSizeGB": 30,
+            "managedDisk": {
+              "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Compute/disks/vm-exposed-ssh_OsDisk_1_6dd4c0b6b4e345498479773c807fbd6d",
+              "storageAccountType": "Premium_LRS"
+            },
+            "name": "vm-exposed-ssh_OsDisk_1_6dd4c0b6b4e345498479773c807fbd6d",
+            "osType": "Linux"
+          }
+        },
+        "timeCreated": "2026-11-20T17:42:34.7148296+00:00",
+        "vmId": "ac0e411c-7ff5-4de3-b8bd-a7113c7090f3"
+      },
+      "tags": {},
+      "type": "Microsoft.Compute/virtualMachines"
+    }
+  ],
+  "networkInterfaces": [
+    {
+      "etag": "W/\"c987aeea-c0f9-4c38-bc0d-debaa39caf06\"",
+      "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkInterfaces/vm-exposed-sshVMNic",
+      "kind": "Regular",
+      "location": "swedencentral",
+      "name": "vm-exposed-sshVMNic",
+      "properties": {
+        "allowPort25Out": false,
+        "auxiliaryMode": "None",
+        "auxiliarySku": "None",
+        "defaultOutboundConnectivityEnabled": false,
+        "disableTcpStateTracking": false,
+        "dnsSettings": {
+          "appliedDnsServers": [],
+          "dnsServers": [],
+          "internalDomainNameSuffix": "v1b1qklxzb2undlesco02jdsye.gvxx.internal.cloudapp.net"
+        },
+        "enableAcceleratedNetworking": false,
+        "enableIPForwarding": false,
+        "hostedWorkloads": [],
+        "ipConfigurations": [
+          {
+            "etag": "W/\"c987aeea-c0f9-4c38-bc0d-debaa39caf06\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkInterfaces/vm-exposed-sshVMNic/ipConfigurations/ipconfigvm-exposed-ssh",
+            "name": "ipconfigvm-exposed-ssh",
+            "properties": {
+              "primary": true,
+              "privateIPAddress": "10.0.0.4",
+              "privateIPAddressVersion": "IPv4",
+              "privateIPAllocationMethod": "Dynamic",
+              "provisioningState": "Succeeded",
+              "publicIPAddress": {
+                "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/publicIPAddresses/vm-exposed-sshPublicIP"
+              },
+              "subnet": {
+                "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/virtualNetworks/vm-exposed-sshVNET/subnets/vm-exposed-sshSubnet"
+              }
+            },
+            "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+          }
+        ],
+        "macAddress": "E4-FA-DE-2D-12-8E",
+        "networkSecurityGroup": {
+          "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG"
+        },
+        "nicType": "Standard",
+        "primary": true,
+        "provisioningState": "Succeeded",
+        "resourceGuid": "56a897cb-e4d8-4340-b1c1-14fd34c9d07c",
+        "tapConfigurations": [],
+        "virtualMachine": {
+          "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Compute/virtualMachines/vm-exposed-ssh"
+        },
+        "vnetEncryptionSupported": false
+      },
+      "tags": {},
+      "type": "Microsoft.Network/networkInterfaces"
+    }
+  ],
+  "publicIPAddresses": [
+    {
+      "etag": "W/\"c11e5800-b09a-4835-943c-8acc5eec17de\"",
+      "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/publicIPAddresses/vm-exposed-sshPublicIP",
+      "location": "swedencentral",
+      "name": "vm-exposed-sshPublicIP",
+      "properties": {
+        "idleTimeoutInMinutes": 4,
+        "ipAddress": "135.225.57.85",
+        "ipConfiguration": {
+          "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkInterfaces/vm-exposed-sshVMNic/ipConfigurations/ipconfigvm-exposed-ssh"
+        },
+        "ipTags": [],
+        "provisioningState": "Succeeded",
+        "publicIPAddressVersion": "IPv4",
+        "publicIPAllocationMethod": "Static",
+        "resourceGuid": "f1951f4c-9822-48e8-ab61-d23ff22caf72"
+      },
+      "sku": {
+        "name": "Standard",
+        "tier": "Regional"
+      },
+      "tags": {},
+      "type": "Microsoft.Network/publicIPAddresses"
+    }
+  ],
+  "virtualNetworks": [
+    {
+      "etag": "W/\"aad2b845-5cbf-45a6-acba-8006110839c6\"",
+      "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/virtualNetworks/vm-exposed-sshVNET",
+      "location": "swedencentral",
+      "name": "vm-exposed-sshVNET",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.0.0.0/16"
+          ]
+        },
+        "enableDdosProtection": false,
+        "privateEndpointVNetPolicies": "Disabled",
+        "provisioningState": "Succeeded",
+        "resourceGuid": "29b8c3ae-c877-4679-8d64-909dae2472c4",
+        "subnets": [
+          {
+            "etag": "W/\"aad2b845-5cbf-45a6-acba-8006110839c6\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/virtualNetworks/vm-exposed-sshVNET/subnets/vm-exposed-sshSubnet",
+            "name": "vm-exposed-sshSubnet",
+            "properties": {
+              "addressPrefix": "10.0.0.0/24",
+              "delegations": [],
+              "ipConfigurations": [
+                {
+                  "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/AIKIDO-TEST/providers/Microsoft.Network/networkInterfaces/VM-EXPOSED-SSHVMNIC/ipConfigurations/IPCONFIGVM-EXPOSED-SSH"
+                }
+              ],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled",
+              "provisioningState": "Succeeded"
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          }
+        ],
+        "virtualNetworkPeerings": []
+      },
+      "tags": {},
+      "type": "Microsoft.Network/virtualNetworks"
+    }
+  ],
+  "networkSecurityGroups": [
+    {
+      "etag": "W/\"4354bfa1-7d1d-4259-9774-9749fa7f4b1f\"",
+      "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG",
+      "location": "swedencentral",
+      "name": "vm-exposed-sshNSG",
+      "properties": {
+        "defaultSecurityRules": [
+          {
+            "etag": "W/\"4354bfa1-7d1d-4259-9774-9749fa7f4b1f\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG/defaultSecurityRules/AllowVnetInBound",
+            "name": "AllowVnetInBound",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow inbound traffic from all VMs in VNET",
+              "destinationAddressPrefix": "VirtualNetwork",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "*",
+              "destinationPortRanges": [],
+              "direction": "Inbound",
+              "priority": 65000,
+              "protocol": "*",
+              "provisioningState": "Succeeded",
+              "sourceAddressPrefix": "VirtualNetwork",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+          },
+          {
+            "etag": "W/\"4354bfa1-7d1d-4259-9774-9749fa7f4b1f\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG/defaultSecurityRules/AllowAzureLoadBalancerInBound",
+            "name": "AllowAzureLoadBalancerInBound",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow inbound traffic from azure load balancer",
+              "destinationAddressPrefix": "*",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "*",
+              "destinationPortRanges": [],
+              "direction": "Inbound",
+              "priority": 65001,
+              "protocol": "*",
+              "provisioningState": "Succeeded",
+              "sourceAddressPrefix": "AzureLoadBalancer",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+          },
+          {
+            "etag": "W/\"4354bfa1-7d1d-4259-9774-9749fa7f4b1f\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG/defaultSecurityRules/DenyAllInBound",
+            "name": "DenyAllInBound",
+            "properties": {
+              "access": "Deny",
+              "description": "Deny all inbound traffic",
+              "destinationAddressPrefix": "*",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "*",
+              "destinationPortRanges": [],
+              "direction": "Inbound",
+              "priority": 65500,
+              "protocol": "*",
+              "provisioningState": "Succeeded",
+              "sourceAddressPrefix": "*",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+          },
+          {
+            "etag": "W/\"4354bfa1-7d1d-4259-9774-9749fa7f4b1f\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG/defaultSecurityRules/AllowVnetOutBound",
+            "name": "AllowVnetOutBound",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+              "destinationAddressPrefix": "VirtualNetwork",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "*",
+              "destinationPortRanges": [],
+              "direction": "Outbound",
+              "priority": 65000,
+              "protocol": "*",
+              "provisioningState": "Succeeded",
+              "sourceAddressPrefix": "VirtualNetwork",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+          },
+          {
+            "etag": "W/\"4354bfa1-7d1d-4259-9774-9749fa7f4b1f\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG/defaultSecurityRules/AllowInternetOutBound",
+            "name": "AllowInternetOutBound",
+            "properties": {
+              "access": "Allow",
+              "description": "Allow outbound traffic from all VMs to Internet",
+              "destinationAddressPrefix": "Internet",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "*",
+              "destinationPortRanges": [],
+              "direction": "Outbound",
+              "priority": 65001,
+              "protocol": "*",
+              "provisioningState": "Succeeded",
+              "sourceAddressPrefix": "*",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+          },
+          {
+            "etag": "W/\"4354bfa1-7d1d-4259-9774-9749fa7f4b1f\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG/defaultSecurityRules/DenyAllOutBound",
+            "name": "DenyAllOutBound",
+            "properties": {
+              "access": "Deny",
+              "description": "Deny all outbound traffic",
+              "destinationAddressPrefix": "*",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "*",
+              "destinationPortRanges": [],
+              "direction": "Outbound",
+              "priority": 65500,
+              "protocol": "*",
+              "provisioningState": "Succeeded",
+              "sourceAddressPrefix": "*",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+          }
+        ],
+        "networkInterfaces": [
+          {
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/AIKIDO-TEST/providers/Microsoft.Network/networkInterfaces/VM-EXPOSED-SSHVMNIC"
+          }
+        ],
+        "provisioningState": "Succeeded",
+        "resourceGuid": "9928a1e6-015c-41ce-83f5-90263ca020b8",
+        "securityRules": [
+          {
+            "etag": "W/\"4354bfa1-7d1d-4259-9774-9749fa7f4b1f\"",
+            "id": "/subscriptions/981da568-ce32-48bc-a68d-9d2dfddced6e/resourceGroups/aikido-test/providers/Microsoft.Network/networkSecurityGroups/vm-exposed-sshNSG/securityRules/default-allow-ssh",
+            "name": "default-allow-ssh",
+            "properties": {
+              "access": "Allow",
+              "destinationAddressPrefix": "*",
+              "destinationAddressPrefixes": [],
+              "destinationPortRange": "22",
+              "destinationPortRanges": [],
+              "direction": "Inbound",
+              "priority": 1000,
+              "protocol": "Tcp",
+              "provisioningState": "Succeeded",
+              "sourceAddressPrefix": "*",
+              "sourceAddressPrefixes": [],
+              "sourcePortRange": "*",
+              "sourcePortRanges": []
+            },
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+          }
+        ]
+      },
+      "tags": {},
+      "type": "Microsoft.Network/networkSecurityGroups"
+    }
+  ]
+}

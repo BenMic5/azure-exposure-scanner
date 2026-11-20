@@ -8,7 +8,8 @@ Requires Python 3.9+. Standard library only, so there is nothing to install.
 ```bash
 python3 scan.py                             # scan the demo inventory (fixtures/demo.json)
 python3 scan.py my-inventory.json --ports 22,3389 --json
-python3 -m unittest discover tests          # 56 tests
+python3 scan.py fixtures/live-azure.json    # a real Azure export (see Bonus)
+python3 -m unittest discover tests          # 57 tests
 ```
 Exit codes: `0` nothing exposed, `1` something EXPOSED (so the scanner can gate a CI pipeline), `2` invalid input (bad `--ports` or an unreadable inventory, reported in one line).
 
@@ -180,7 +181,7 @@ For each VM, NIC, IP configuration, and port, the scanner walks the path an inte
   - NSG rules see the private IP after translation.
   - Standard SKU public IPs are closed by default.
 
-  These have not yet been checked against a live subscription (see [What I'd do next](#what-id-do-next)).
+  These were confirmed on one live VM (see [Bonus](#bonus-aikido-scan-of-a-live-test-vm)), not yet on a broad set of configurations.
 - **Default ports** are common admin and database services: 22, 3389, 1433, 3306, 5432, 6379, 27017. `--ports` changes them.
 
 ## 4. Limits of the conclusion
@@ -235,9 +236,34 @@ For each VM, NIC, IP configuration, and port, the scanner walks the path an inte
 1. **Live read-only mode:** a small collector (Resource Graph or SDK) writing the same inventory JSON.
 2. **Raise severity** when the VM's managed identity holds Owner or Contributor (check 1 + check 3).
 3. **Cover the remaining paths:** Load Balancer inbound NAT and rules, AVNM security admin rules, IPv6.
-4. **Validate** the verdicts against Network Watcher IP flow verify in a real subscription.
+4. **Validate more broadly:** one live VM already matches Network Watcher IP flow verify (see Bonus). Next comes a corpus of real configurations: Deny overrides, subnet NSGs, and look-alikes.
 5. **Severity by service:** e.g. an internet-exposed Redis or MongoDB (often unauthenticated) above SSH.
 6. **Compact output at scale:** one line per look-alike by default, with full evidence behind a `--verbose` flag. The demo prints full evidence on purpose, since the look-alikes are what the brief asks to see.
+
+## Bonus: Aikido scan of a live test VM
+I connected a personal Azure subscription to Aikido. The connection is read-only, using the Security Reader and Log Analytics Reader roles. The subscription held one VM built like the `vm-exposed-ssh` fixture:
+- a Standard public IP;
+- an NSG on the NIC allowing TCP 22 from `Any` (`default-allow-ssh`, priority 1000);
+- no NSG on the subnet;
+- no admin rules.
+
+The VM was really reachable over SSH from the internet ([Azure network settings](docs/bonus/azure-vm-networking.png)). The test resources were removed after the scan.
+
+**What Aikido reported** ([all findings](docs/bonus/aikido-findings.png)): five findings, all Low. The SSH one ([detail](docs/bonus/aikido-ssh-finding.png)):
+- is "Network Security Group allows SSH access from entire Internet", reported on the **NSG** resource;
+- has a risk score of 18 (Low), marked "Downgraded: AI assessed cloud issue to be less severe".
+
+**Compared with this scanner:** the same configuration is the `vm-exposed-ssh` demo case, which this scanner reports as **EXPOSED**. To confirm it on the real data, I exported the five resource types from the live subscription with read-only ARM calls (`fixtures/live-azure.json`, with the SSH public key removed), and asked Azure directly:
+- **This scanner:** `python3 scan.py fixtures/live-azure.json` reports **EXPOSED** on 22/tcp, deciding rule `default-allow-ssh` (priority 1000), no subnet NSG, public IP `135.225.57.85`.
+- **Azure Network Watcher IP flow verify** (internet host `8.8.8.8` to `10.0.0.4:22`): `"access": "Allow", "ruleName": "securityRules/default-allow-ssh"`.
+
+Both agree on the verdict and on the deciding rule.
+
+**Takeaway:** Aikido found the misconfiguration. From the finding alone, though, you can't tell whether a VM is actually reachable through that NSG, and I don't know what the AI downgrade took into account. Evaluating the whole path could do two things:
+- confirm this case as a real exposure and raise its priority;
+- keep look-alikes low, such as an NSG on a VM with no public IP or an NSG overridden by the subnet layer.
+
+That is the precision argument behind [check 1](#1-proposed-checks).
 
 ## Layout
 ```
@@ -249,5 +275,7 @@ scanner/exposure.py     walk VM → NIC → public IP / subnet NSG / NIC NSG, de
 scanner/finding.py      provider-neutral Finding / Evidence
 scanner/report.py       text and JSON output
 fixtures/demo.json      demo inventory, one VM per scenario
+fixtures/live-azure.json  export of the live test subscription (bonus)
 tests/                  scenario and rule-matching tests
+docs/bonus/             screenshots of the Aikido scan (bonus)
 ```
