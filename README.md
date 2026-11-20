@@ -115,6 +115,19 @@ The choice was judged only on what the task asks for. Both languages were viable
 | 2 | **Effectively public storage data** | Data leak from blob containers readable anonymously. | High impact and cheap to evaluate. It has the same "layers" shape: account `allowBlobPublicAccess` × container access level × network rules (`publicNetworkAccess`, firewall default action). Only a container passing every layer is public. |
 | 3 | **Identity privilege escalation** | A principal that can grant itself more rights (`Microsoft.Authorization/roleAssignments/write`, e.g. Owner or User Access Administrator, or a custom role) takes over the subscription. Stale app secrets make such principals easy to steal. | Needs Entra ID / Microsoft Graph data, so it costs more. Combined with check 1 it gives the most valuable finding: *an exposed VM whose managed identity can escalate*. |
 
+**How checks 2 and 3 would be built:**
+- **Check 2 (storage):** read storage accounts and their blob containers with ARM list calls. Both are covered by `Reader`, so no data-plane access is needed. Report a container as public only if every layer allows anonymous reads:
+  - the account has `allowBlobPublicAccess: true`;
+  - the container's `publicAccess` is `Blob` or `Container`;
+  - the account's network rules let the internet in (`publicNetworkAccess` enabled and firewall `defaultAction: Allow`).
+
+  As in check 1, a container that is unreadable or missing data is INCONCLUSIVE.
+- **Check 3 (identity):**
+  1. Read role assignments and role definitions from ARM (covered by `Reader`).
+  2. Resolve each principal's effective actions across inherited scopes, taking `NotActions` into account.
+  3. Flag any principal that can perform `roleAssignments/write`.
+  4. Add app credential expiry and age from Microsoft Graph. This needs `Application.Read.All`, a permission beyond `Reader`, so it would be an opt-in.
+
 ## 2. Approach
 **Data sources.** Every input is a read-only ARM list call, all covered by the built-in **`Reader`** role:
 
@@ -191,6 +204,11 @@ For each VM, NIC, IP configuration, and port, the scanner walks the path an inte
 ## 5. Production scale (3,000 environments)
 **Design.**
 - **Collect in bulk.** One Azure Resource Graph query per tenant or management group fetches all five resource types instead of about 15,000 ARM calls. Results are paged (at most 1,000 rows per page), and tenant scope covers up to 10,000 subscriptions. Per-subscription ARM calls are the fallback where Resource Graph is unavailable or stale.
+- **Rough sizing.** Assume about 100 relevant resources per subscription:
+  - **Collection:** 3,000 subscriptions give about 300,000 rows, so about 300 pages. Microsoft's documented example quota for Resource Graph is 15 queries per 5 seconds per user. The real quota varies, and each response reports it in `x-ms-user-quota-remaining`. At that rate, one full sweep takes a few minutes.
+  - **Evaluation:** this evaluator measured about 0.2 ms per VM for all 7 ports. 150,000 VMs (50 per subscription) take about 30 seconds on one core.
+
+  Collection and API throttling, not evaluation, are what limit scale.
 - **Separate collection from evaluation.** Collectors write a versioned snapshot per subscription; evaluators are pure functions over snapshots, as in this PoC. Evaluation is cheap and repeatable, and a snapshot can be replayed when debugging a disputed finding.
 - **Work queue per subscription.**
   - Bounded concurrency per tenant, to respect ARM and Resource Graph throttling.
